@@ -8,12 +8,12 @@ let win;
 
 function createWindow() {
     win = new BrowserWindow({
-        // transparent: true,
-        frame: false
+        // frame: false
+        width: 2560,
+        height: 1600
     });
 
-    win.loadURL('file://${__dirname}/index.html');
-
+    win.loadURL(`file://${__dirname}/views/index.html`);
     win.on('closed', () => {
         if (process.platform !== 'darwin') {
             app.quit()
@@ -28,7 +28,6 @@ app.on('ready', () => {
 });
 
 app.on('window-all-closed', () => {
-    console.log(process.platform);
     if (process.platform !== 'darwin') {
         app.quit();
     }
