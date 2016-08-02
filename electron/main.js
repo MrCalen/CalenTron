@@ -1,22 +1,36 @@
-const {app, BrowserWindow} = require('electron');
+'use strict';
+
+const {app, BrowserWindow, Menu, Tray} = require('electron');
+
+var CalenTray = require('./modules/tray');
 
 let win;
 
 function createWindow() {
-    win = new BrowserWindow({width: 800, height: 600});
+    win = new BrowserWindow({
+        // transparent: true,
+        frame: false
+    });
 
     win.loadURL('file://${__dirname}/index.html');
 
     win.on('closed', () => {
-        win = null
-    })
+        if (process.platform !== 'darwin') {
+            app.quit()
+        }
+    });
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+    createWindow();
+    CalenTray.create(app);
+
+});
 
 app.on('window-all-closed', () => {
+    console.log(process.platform);
     if (process.platform !== 'darwin') {
-        app.quit()
+        app.quit();
     }
 });
 
