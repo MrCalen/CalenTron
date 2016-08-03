@@ -23,6 +23,7 @@ app.directive('tasksWidget', function () {
                 }, 5000);
             };
 
+            $scope.refresh();
             $scope.refreshData();
 
             $scope.updateTask = function (task) {

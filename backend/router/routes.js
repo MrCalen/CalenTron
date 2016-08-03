@@ -4,8 +4,14 @@ exports.handleRouting = function (app) {
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
 
+
+    // Load controllers
+    var tasksController = require('../controllers/TasksController');
+    var loginController = require('../controllers/LoginController');
+    var weatherController = require('../controllers/WeatherController');
+
+
     app.post('/login', function (req, res) {
-        var loginController = require('../controllers/LoginController');
         loginController.loginRoute(req, res);
     });
 
@@ -42,7 +48,6 @@ exports.handleRouting = function (app) {
         next();
     }
 
-    var tasksController = require('../controllers/TasksController');
     app.get('/api/tasks', api, function (req, res) {
         tasksController.getTasks()
         .then(function (tasks) {
@@ -95,13 +100,21 @@ exports.handleRouting = function (app) {
     app.post('/api/task/:task/delete', api, function (req, res) {
         var taskId = req.params.task;
         tasksController
-            .removeTask(taskId)
-            .then(function () {
-                res.send({
-                    success: true,
-                    message: 'Task removed successfully'
-                });
+        .removeTask(taskId)
+        .then(function () {
+            res.send({
+                success: true,
+                message: 'Task removed successfully'
             });
+        });
+    });
+
+    app.get('/api/weather', api, function (req, res) {
+        weatherController
+        .getWeather()
+        .then(function (data){
+            res.send(data);
+        });
     });
 
 };
