@@ -7,8 +7,8 @@ app.directive('tasksWidget', function () {
 
             var access_token = localStorage.getItem('access_token');
 
-            $scope.loading = true;
             $scope.refresh = function () {
+                $scope.loading = true;
                 $http.get(window.url + "/api/tasks?token=" + access_token)
                 .then(function (response) {
                     $scope.tasks = response.data;
@@ -16,13 +16,14 @@ app.directive('tasksWidget', function () {
                 });
             };
 
-            function refreshData() {
+            $scope.refreshData = function () {
                 $timeout(function () {
-                    refresh();
-                    refreshData();
-                }, 2000);
-            }
-            $scope.refresh();
+                    $scope.refresh();
+                    $scope.refreshData();
+                }, 5000);
+            };
+
+            $scope.refreshData();
 
             $scope.updateTask = function (task) {
                 $http.post(window.url + "/api/task/" + task.id
