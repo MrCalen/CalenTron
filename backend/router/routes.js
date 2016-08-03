@@ -50,4 +50,21 @@ exports.handleRouting = function (app) {
         });
     });
 
+    app.post('/api/tasks/new', api, function (req, res) {
+        var name = req.body.name;
+        if (!name) {
+            res.send({
+               success: false,
+                message: 'Name is required'
+            });
+        }
+        tasksController.addTask(name)
+        .then(function () {
+            res.send({
+                success: true,
+                message: 'Task created successfully'
+            });
+        });
+    });
+
 };

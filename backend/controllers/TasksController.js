@@ -10,8 +10,14 @@ exports.getTasks = function () {
     });
 };
 
-exports.addTask = function () {
-
+exports.addTask = function (name) {
+    return new Promise(function (resolve, error) {
+        var db = require('../modules/db');
+        db.createTask(name)
+        .then(function () {
+            resolve();
+        });
+    })
 };
 
 exports.removeTasks = function () {
