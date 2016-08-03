@@ -3,6 +3,7 @@ app.controller('LoginController', ['$scope', '$http', function ($scope, $http) {
         window.location = '/';
         return;
     }
+
     $scope.api_url = window.url;
 
     $scope.postLogin = function () {

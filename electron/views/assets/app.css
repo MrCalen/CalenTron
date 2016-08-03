@@ -1,4 +1,12 @@
 body {
-    background-color: grey;
-    height: 100%;
+    background-color: #1c232e;
+    color: white;
+}
+
+
+.title {
+    font-size: 50px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
+    font-family: serif;
 }
