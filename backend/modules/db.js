@@ -6,3 +6,12 @@ exports.fetchUsers = function () {
         });
     });
 };
+
+exports.fetchTasks = function () {
+    return new Promise(function (resolve, error) {
+        var db = global.db;
+        db.all('SELECT * FROM tasks', function (err, rows) {
+            resolve(rows);
+        })
+    });
+};

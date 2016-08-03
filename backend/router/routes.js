@@ -44,7 +44,6 @@ exports.handleRouting = function (app) {
 
     var tasksController = require('../controllers/TasksController');
     app.get('/api/tasks', api, function (req, res) {
-
         tasksController.getTasks()
         .then(function (tasks) {
             res.send(tasks);
