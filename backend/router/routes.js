@@ -9,6 +9,7 @@ exports.handleRouting = function (app) {
     var tasksController = require('../controllers/TasksController');
     var loginController = require('../controllers/LoginController');
     var weatherController = require('../controllers/WeatherController');
+    var tramController = require('../controllers/TramController');
 
 
     app.post('/login', function (req, res) {
@@ -114,6 +115,13 @@ exports.handleRouting = function (app) {
         .getWeather()
         .then(function (data){
             res.send(data);
+        });
+    });
+
+    app.get('/api/tram', api, function (req, res) {
+        tramController.getTram()
+        .then(function (data) {
+            res.send(data.response.schedules);
         });
     });
 
