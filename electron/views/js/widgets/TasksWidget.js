@@ -12,9 +12,7 @@ app.directive('tasksWidget', function () {
                 });
             };
 
-            $timeout(function () {
-                $scope.refresh();
-            }, 2000);
+            $scope.refresh();
         }
     };
 });
