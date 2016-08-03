@@ -10,3 +10,12 @@ body {
     border-bottom: 1px solid white;
     font-family: serif;
 }
+
+.panel {
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+.panel-heading {
+    border-bottom: 1px solid white;
+}
