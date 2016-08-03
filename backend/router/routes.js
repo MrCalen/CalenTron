@@ -71,13 +71,25 @@ exports.handleRouting = function (app) {
     app.post('/api/task/:task/solve', api, function (req, res) {
         var taskId = req.params.task;
         tasksController
-        .solveTask(taskId)
+        .solveTask(taskId, true)
         .then(function () {
            res.send({
                success: true,
                message: 'Task solved successfully'
            });
         });
+    });
+
+    app.post('/api/task/:task/unsolve', api, function (req, res) {
+        var taskId = req.params.task;
+        tasksController
+            .solveTask(taskId, false)
+            .then(function () {
+                res.send({
+                    success: true,
+                    message: 'Task unsolved successfully'
+                });
+            });
     });
 
 };

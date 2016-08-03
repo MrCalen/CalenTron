@@ -25,10 +25,10 @@ exports.createTask = function (name) {
     });
 };
 
-exports.solveTask = function (id) {
+exports.solveTask = function (id, solve) {
     return new Promise(function (resolve, error) {
         var db = global.db;
-        db.run('UPDATE tasks SET solved = 1 WHERE id = ?', id);
+        db.run('UPDATE tasks SET solved = ? WHERE id = ?', solve ? 1 : 0, id);
         resolve();
     });
 };

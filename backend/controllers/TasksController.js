@@ -24,10 +24,10 @@ exports.removeTask = function () {
 
 };
 
-exports.solveTask = function (id) {
+exports.solveTask = function (id, solve) {
     return new Promise(function (resolve, error) {
         var db = require('../modules/db');
-        db.solveTask(id)
+        db.solveTask(id, solve)
         .then(function () {
             resolve();
         });
