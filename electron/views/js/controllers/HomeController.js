@@ -1,5 +1,6 @@
 app.controller('HomeController', ['$scope', function ($scope) {
-    if (!localStorage.getItem('access_token')) {
+    var access_token = null;
+    if (!(access_token = localStorage.getItem('access_token'))) {
         window.location = '#login';
         return;
     }

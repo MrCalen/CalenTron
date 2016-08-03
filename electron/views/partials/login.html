@@ -6,8 +6,20 @@
     </div>
 
     <form class="loginform" ng-submit="postLogin()">
-        <input class="login form-control" required placeholder="login" ng-model="login"/>
-        <input class="password form-control" required type="password" ng-model="password" placeholder="password" />
-        <button class="btn btn-theme" type="submit">Connect</button>
+        <input class="login form-control"
+               required
+               placeholder="login"
+               ng-model="login"/>
+
+        <input class="password form-control"
+               required
+               type="password"
+               ng-model="password"
+               placeholder="password" />
+        <div class="error" ng-bind="loginError"></div>
+        <button class="btn btn-theme"
+                type="submit">
+            Connect
+        </button>
     </form>
 </div>

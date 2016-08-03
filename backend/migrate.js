@@ -1,7 +1,8 @@
 var fs = require("fs");
-var CONSTANTS = require('./constants');
+var ini = require('ini');
+var config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'));
 
-var file = CONSTANTS.getDataBaseFile();
+var file = config.server.database;
 var exists = fs.existsSync(file);
 if (exists) {
     fs.unlink(file);

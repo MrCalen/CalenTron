@@ -13,8 +13,14 @@ app.controller('LoginController', ['$scope', '$http', function ($scope, $http) {
             login: login,
             password: password
         })
-        .then(function (data) {
-            // FIXME: get access token here.
+        .success(function (data) {
+            if (!data.success) {
+                $scope.loginError = data.message;
+                return;
+            }
+
+            localStorage.setItem('access_token', data.message);
+            window.location = '/';
         });
     }
 }]);

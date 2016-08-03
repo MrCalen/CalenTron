@@ -1,12 +1,19 @@
 var express = require('express');
 var app = express();
 var fs = require("fs");
-var constants = require('./constants');
-var file = constants.getDataBaseFile();
 var router = require('./router/routes');
 
+// Fetch Server config
+// Put it in global scope, so the jwt accesses it easily
+var ini = require('ini');
+var config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'));
+global.config = config;
 
 
+
+// Fetch database migrate
+// Put it in global scope too
+var file = global.config.server.database;
 var exists = fs.existsSync(file);
 if (!exists) {
     console.error('SQL Database could not be found, please migrate first.');
