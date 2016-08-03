@@ -67,4 +67,17 @@ exports.handleRouting = function (app) {
         });
     });
 
+    // Solve task
+    app.post('/api/task/:task/solve', api, function (req, res) {
+        var taskId = req.params.task;
+        tasksController
+        .solveTask(taskId)
+        .then(function () {
+           res.send({
+               success: true,
+               message: 'Task solved successfully'
+           });
+        });
+    });
+
 };

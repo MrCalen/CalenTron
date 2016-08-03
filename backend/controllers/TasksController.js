@@ -17,13 +17,19 @@ exports.addTask = function (name) {
         .then(function () {
             resolve();
         });
-    })
+    });
 };
 
-exports.removeTasks = function () {
+exports.removeTask = function () {
 
 };
 
-exports.solveTask = function () {
-
+exports.solveTask = function (id) {
+    return new Promise(function (resolve, error) {
+        var db = require('../modules/db');
+        db.solveTask(id)
+        .then(function () {
+            resolve();
+        });
+    });
 };

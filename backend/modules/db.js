@@ -24,3 +24,11 @@ exports.createTask = function (name) {
         resolve();
     });
 };
+
+exports.solveTask = function (id) {
+    return new Promise(function (resolve, error) {
+        var db = global.db;
+        db.run('UPDATE tasks SET solved = 1 WHERE id = ?', id);
+        resolve();
+    });
+};
