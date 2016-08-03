@@ -4,9 +4,51 @@ exports.handleRouting = function (app) {
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
 
-
     app.post('/login', function (req, res) {
         var loginController = require('../controllers/LoginController');
         loginController.loginRoute(req, res);
     });
+
+
+    /*
+
+    +---------------------------
+    | Api Middleware
+    +---------------------------
+
+    */
+    function api(req, res, next) {
+        var access_token = req.query.token;
+        if (!access_token) {
+            res.send({
+                success: false,
+                message: 'Please provide an access token'
+            });
+            return;
+        }
+        var jwt = require('jsonwebtoken');
+        var decoded;
+
+        try {
+            decoded = jwt.verify(access_token, global.config.server.key);
+        } catch (err) {
+            res.send({
+                success: false,
+                message: 'Invalid access token'
+            });
+            return;
+        }
+        req.token = decoded;
+        next();
+    }
+
+    var tasksController = require('../controllers/TasksController');
+    app.get('/api/tasks', api, function (req, res) {
+
+        tasksController.getTasks()
+        .then(function (tasks) {
+            res.send(tasks);
+        });
+    });
+
 };

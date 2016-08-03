@@ -8,6 +8,7 @@ var router = require('./router/routes');
 var ini = require('ini');
 var config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'));
 global.config = config;
+global.express = express;
 
 
 
