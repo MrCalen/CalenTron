@@ -92,4 +92,16 @@ exports.handleRouting = function (app) {
             });
     });
 
+    app.post('/api/task/:task/delete', api, function (req, res) {
+        var taskId = req.params.task;
+        tasksController
+            .removeTask(taskId)
+            .then(function () {
+                res.send({
+                    success: true,
+                    message: 'Task removed successfully'
+                });
+            });
+    });
+
 };

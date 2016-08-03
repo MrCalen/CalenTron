@@ -24,15 +24,26 @@
                 <i ng-if="loading" class="fa fa-circle-o-notch fa-spin pull-right"></i>
             </div>
             <div class="panel-body">
-                <table>
+                <table class="task-table">
                     <tbody>
                         <tr ng-repeat="task in tasks">
-                            <td style="padding: 5px">
+                            <td>
                                 <input type="checkbox" class="magic-checkbox" id="{{ task.id }}" ng-model="task.solved" ng-change="updateTask(task)">
                                 <label class="pull-left" for="{{ task.id }}"></label>
                                 <label class="pull-left text" for="{{ task.id }}">
                                     {{ task.name }}
                                 </label>
+                                <span class="pull-right">
+                                    <i class="fa fa-remove" ng-click="removeTask(task)"></i>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <form class="form-inline" ng-submit="createTask(newTask); newTask = ''">
+                                <i class="fa fa-plus fa-fw"></i>
+                                <input ng-model="newTask" class="input-new-task" placeholder="New Task">
+                                </form>
                             </td>
                         </tr>
                     </tbody>

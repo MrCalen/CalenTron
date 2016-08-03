@@ -32,3 +32,11 @@ exports.solveTask = function (id, solve) {
         resolve();
     });
 };
+
+exports.removeTask = function(id) {
+    return new Promise(function (resolve, error) {
+        var db = global.db;
+        db.run('DELETE FROM tasks WHERE id = ?', id);
+        resolve();
+    });
+};

@@ -20,8 +20,14 @@ exports.addTask = function (name) {
     });
 };
 
-exports.removeTask = function () {
-
+exports.removeTask = function (id) {
+    return new Promise(function (resolve, error) {
+        var db = require('../modules/db');
+        db.removeTask(id)
+        .then(function () {
+            resolve();
+        });
+    });
 };
 
 exports.solveTask = function (id, solve) {

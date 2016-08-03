@@ -29,7 +29,26 @@ app.directive('tasksWidget', function () {
                     + "/" + (task.solved ? 'solve' : 'unsolve')
                     + '?token=' + $scope.access_token)
                     .success(function (data) {
-                       console.log(data);
+                        $scope.refresh();
+                    });
+            };
+
+            $scope.createTask = function (name) {
+                $http.post(
+                    window.url + '/api/tasks/new' + '?token=' + $scope.access_token, {
+                        name: name
+                    }
+                )
+                .success(function (data) {
+                    $scope.refresh();
+                })
+            };
+
+            $scope.removeTask = function (task) {
+                $http.post(window.url + "/api/task/" + task.id
+                    + "/delete"
+                    + '?token=' + $scope.access_token)
+                    .success(function (data) {
                         $scope.refresh();
                     });
             }
