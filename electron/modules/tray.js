@@ -6,7 +6,7 @@ const electron = require('electron');
 
 exports.create = (app) => {
 
-    const iconPath = __dirname + '/../assets/logo.png';
+    const iconPath = __dirname + '/../views/assets/logo.png';
     tray = new electron.Tray(iconPath);
     const contextMenu = electron.Menu.buildFromTemplate([]);
     tray.setToolTip('Calen Processing');

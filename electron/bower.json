@@ -1,0 +1,25 @@
+{
+  "name": "calen",
+  "description": "",
+  "main": "main.js",
+  "authors": [
+    "Mr Calen"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/MrCalen/CalenTron",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "views/assets",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "angular-route": "^1.5.8"
+  }
+}
