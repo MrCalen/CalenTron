@@ -10,6 +10,7 @@ exports.handleRouting = function (app) {
     var loginController = require('../controllers/LoginController');
     var weatherController = require('../controllers/WeatherController');
     var tramController = require('../controllers/TramController');
+    var subwayController = require('../controllers/SubwayController');
 
 
     app.post('/login', function (req, res) {
@@ -123,6 +124,13 @@ exports.handleRouting = function (app) {
         .then(function (data) {
             res.send(data.response.schedules);
         });
+    });
+
+    app.get('/api/subway', api, function (req, res) {
+       subwayController.getSubway()
+       .then(function (data) {
+           res.send(data.response.schedules);
+       });
     });
 
 };
