@@ -41,3 +41,7 @@ input.input-new-task:active {
 .fa-remove {
     cursor: pointer;
 }
+
+.serif {
+    font-family: serif !important;
+}

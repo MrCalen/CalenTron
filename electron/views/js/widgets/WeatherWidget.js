@@ -36,7 +36,17 @@ app.directive('weatherWidget', function () {
                         skycons.set("weather", mainToIcon($scope.lastPrevision.main));
                     });
             };
-            $scope.fetchData();
+            $scope.mockData = function () {
+                $scope.lastPrevision = {
+                    time: '2016-08-04 00:00:00',
+                    main: 'Rain',
+                    temp: 17,
+                    city: 'Le Kremlin-Bicetre'
+                };
+                skycons.set("weather", mainToIcon($scope.lastPrevision.main));
+            };
+            // $scope.fetchData();
+            $scope.mockData();
 
         }
     }
