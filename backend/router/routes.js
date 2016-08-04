@@ -13,6 +13,7 @@ exports.handleRouting = function (app) {
     var pingController = require('../controllers/PingController');
     var subwayController = require('../controllers/SubwayController');
     var cahController = require('../controllers/CaHController');
+    var twitchController = require('../controllers/TwitchController');
 
 
     app.post('/login', function (req, res) {
@@ -161,4 +162,14 @@ exports.handleRouting = function (app) {
         });
     });
 
+    app.get('/api/twitch', api, function (req, res) {
+       twitchController
+       .getTwichTop()
+       .then(function (result) {
+          res.send({
+              success: true,
+              result: result.streams.result
+          });
+       });
+    });
 };
