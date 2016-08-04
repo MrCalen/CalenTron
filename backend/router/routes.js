@@ -12,6 +12,7 @@ exports.handleRouting = function (app) {
     var tramController = require('../controllers/TramController');
     var pingController = require('../controllers/PingController');
     var subwayController = require('../controllers/SubwayController');
+    var cahController = require('../controllers/CaHController');
 
 
     app.post('/login', function (req, res) {
@@ -52,7 +53,8 @@ exports.handleRouting = function (app) {
     }
 
     app.get('/api/tasks', api, function (req, res) {
-        tasksController.getTasks()
+        tasksController
+        .getTasks()
         .then(function (tasks) {
             res.send(tasks);
         });
@@ -66,7 +68,8 @@ exports.handleRouting = function (app) {
                 message: 'Name is required'
             });
         }
-        tasksController.addTask(name)
+        tasksController
+        .addTask(name)
         .then(function () {
             res.send({
                 success: true,
@@ -91,13 +94,13 @@ exports.handleRouting = function (app) {
     app.post('/api/task/:task/unsolve', api, function (req, res) {
         var taskId = req.params.task;
         tasksController
-            .solveTask(taskId, false)
-            .then(function () {
-                res.send({
-                    success: true,
-                    message: 'Task unsolved successfully'
-                });
+        .solveTask(taskId, false)
+        .then(function () {
+            res.send({
+                success: true,
+                message: 'Task unsolved successfully'
             });
+        });
     });
 
     app.post('/api/task/:task/delete', api, function (req, res) {
@@ -121,27 +124,41 @@ exports.handleRouting = function (app) {
     });
 
     app.get('/api/tram', api, function (req, res) {
-        tramController.getTram()
+        tramController
+        .getTram()
         .then(function (data) {
             res.send(data.response.schedules);
         });
     });
 
     app.get('/api/subway', api, function (req, res) {
-       subwayController.getSubway()
+       subwayController
+       .getSubway()
        .then(function (data) {
            res.send(data.response.schedules);
        });
     });
 
     app.get('/api/ping', api, function (req, res) {
-        pingController.getPing()
+        pingController
+        .getPing()
         .then(function (data) {
             res.send({
                 success: true,
                 ping: data.avg
             });
         });
-    })
+    });
+
+    app.get('/api/cah', api, function (req, res) {
+        cahController
+        .getLastCAH()
+        .then(function (comic) {
+            res.send({
+                success: true,
+                result: comic
+            });
+        });
+    });
 
 };
