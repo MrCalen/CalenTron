@@ -23,19 +23,26 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-4">
             <div class="container-fluid">
-                <tasks-widget></tasks-widget>
-                <tram-widget></tram-widget>
-                <cah-widget></cah-widget>
+                <div class="row">
+                    <tasks-widget></tasks-widget>
+                </div>
+                <div class="row">
+                    <cah-widget></cah-widget>
+                </div>
             </div>
+        </div>
+        <div class="col-md-4">
+            <tram-widget></tram-widget>
+            <twitch-widget></twitch-widget>
         </div>
     </div>
 </div>
 
 
 <script type="text/ng-template" id="taskWidget.html">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="panel panel-theme">
             <div class="panel-heading">
                 Tasks
@@ -95,7 +102,7 @@
 </script>
 
 <script type="text/ng-template" id="tramWidget.html">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="panel panel-theme">
             <div class="panel-heading">
                 Next Transport
@@ -126,13 +133,32 @@
 </script>
 
 <script type="text/ng-template" id="cahWidget.html">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="panel">
             <div class="panel-heading">
                 Last Cyanide & Happiness Comic
             </div>
             <div class="panel-body">
                 <img class="img img-responsive" src="{{ img }}"/>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="twitchWidget.html">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-heading">
+                Current League Streams
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="stream in streams">
+                    <i class="fa fa-twitch fa-fw" aria-hidden="true"></i>
+                    <span style="padding: 10px">
+                        {{ stream.channel.name }}
+                    </span>
+                    <span class="pull-right">{{ stream.viewers }} viewers</span>
+                </div>
             </div>
         </div>
     </div>
