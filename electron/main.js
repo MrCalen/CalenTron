@@ -24,7 +24,6 @@ function createWindow() {
 app.on('ready', () => {
     createWindow();
     CalenTray.create(app);
-
 });
 
 app.on('window-all-closed', () => {

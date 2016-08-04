@@ -45,8 +45,8 @@ app.directive('weatherWidget', function () {
                 };
                 skycons.set("weather", mainToIcon($scope.lastPrevision.main));
             };
-            $scope.fetchData();
-            // $scope.mockData();
+            // $scope.fetchData();
+            $scope.mockData();
 
         }
     }
