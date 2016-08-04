@@ -6,9 +6,9 @@
         <h5 class="text-center title">Dashboard</h5>
     </div>
     <div class="row" style="padding-top: 20px">
-        <div class="col-md-4">
+        <div class="col-md-4 ">
             <div class="row panel" style="padding: 20px">
-                <ds-widget-clock class="col-md-6 col-md-offset-3"></ds-widget-clock>
+                <ds-widget-clock class="col-xs-6 col-xs-offset-3 "></ds-widget-clock>
             </div>
             <div class="row">
                 <weather-widget></weather-widget>
@@ -24,9 +24,10 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="row">
+            <div class="container-fluid">
                 <tasks-widget></tasks-widget>
                 <tram-widget></tram-widget>
+                <cah-widget></cah-widget>
             </div>
         </div>
     </div>
@@ -124,6 +125,15 @@
     </div>
 </script>
 
-<script type="text/ng-template" id="pingWidget.html">
-
+<script type="text/ng-template" id="cahWidget.html">
+    <div class="col-md-6">
+        <div class="panel">
+            <div class="panel-heading">
+                Last Cyanide & Happiness Comic
+            </div>
+            <div class="panel-body">
+                <img class="img img-responsive" src="{{ img }}"/>
+            </div>
+        </div>
+    </div>
 </script>
