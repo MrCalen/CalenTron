@@ -10,6 +10,7 @@ exports.handleRouting = function (app) {
     var loginController = require('../controllers/LoginController');
     var weatherController = require('../controllers/WeatherController');
     var tramController = require('../controllers/TramController');
+    var pingController = require('../controllers/PingController');
     var subwayController = require('../controllers/SubwayController');
 
 
@@ -132,5 +133,15 @@ exports.handleRouting = function (app) {
            res.send(data.response.schedules);
        });
     });
+
+    app.get('/api/ping', api, function (req, res) {
+        pingController.getPing()
+        .then(function (data) {
+            res.send({
+                success: true,
+                ping: data.avg
+            });
+        });
+    })
 
 };
