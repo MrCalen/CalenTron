@@ -4,5 +4,6 @@
   "description": "",
   "main": "main.js",
   "author": "Mr Calen",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }

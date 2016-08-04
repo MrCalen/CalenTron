@@ -1,25 +1,33 @@
 <link href="assets/app.css" rel="stylesheet">
 <link href="assets/magic.css" rel="stylesheet">
 
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="HomeController">
     <div class="row">
         <h5 class="text-center title">Dashboard</h5>
     </div>
     <div class="row" style="padding-top: 20px">
-        <weather-widget></weather-widget>
-        <tasks-widget></tasks-widget>
-        <tram-widget></tram-widget>
+        <div class="col-md-4">
+            <weather-widget></weather-widget>
+            <canvas id="line" class="chart chart-line"
+                    chart-data="data"
+                    chart-labels="labels"
+                    chart-series="series"
+                    chart-options="options"
+                    chart-dataset-override="datasetOverride">
+            </canvas>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <tasks-widget></tasks-widget>
+                <tram-widget></tram-widget>
+            </div>
+        </div>
     </div>
 </div>
 
 
 <script type="text/ng-template" id="taskWidget.html">
-    <div ng-class="{
-              'col-md-4 col-xs-12': size == 'small',
-              'col-md-6 col-xs-12': size == 'half',
-              'col-md-8 col-xs-12': size == 'medium',
-              'col-md-12 col-xs-12': size == 'large'
-   }">
+    <div class="col-md-6">
         <div class="panel panel-theme">
             <div class="panel-heading">
                 Tasks
@@ -57,12 +65,7 @@
 </script>
 
 <script type="text/ng-template" id="weatherWidget.html">
-    <div ng-class="{
-              'col-md-4 col-xs-12': size == 'small',
-              'col-md-6 col-xs-12': size == 'half',
-              'col-md-8 col-xs-12': size == 'medium',
-              'col-md-12 col-xs-12': size == 'large'
-   }">
+    <div class="col-md-12">
         <div class="panel-weather">
             <div class="panel-body">
                 <div class="container-fluid row">
@@ -84,12 +87,7 @@
 </script>
 
 <script type="text/ng-template" id="tramWidget.html">
-    <div ng-class="{
-              'col-md-4 col-xs-12': size == 'small',
-              'col-md-6 col-xs-12': size == 'half',
-              'col-md-8 col-xs-12': size == 'medium',
-              'col-md-12 col-xs-12': size == 'large'
-   }">
+    <div class="col-md-6">
         <div class="panel panel-theme">
             <div class="panel-heading">
                 Next Transport
@@ -116,4 +114,8 @@
             </div>
         </div>
     </div>
+</script>
+
+<script type="text/ng-template" id="pingWidget.html">
+
 </script>
