@@ -7,14 +7,21 @@
     </div>
     <div class="row" style="padding-top: 20px">
         <div class="col-md-4">
-            <weather-widget></weather-widget>
-            <canvas id="line" class="chart chart-line"
-                    chart-data="data"
-                    chart-labels="labels"
-                    chart-series="series"
-                    chart-options="options"
-                    chart-dataset-override="datasetOverride">
-            </canvas>
+            <div class="row panel" style="padding: 20px">
+                <ds-widget-clock class="col-md-6 col-md-offset-3"></ds-widget-clock>
+            </div>
+            <div class="row">
+                <weather-widget></weather-widget>
+                <div class="panel">
+                    <canvas id="line" class="chart chart-line"
+                            chart-data="data"
+                            chart-labels="labels"
+                            chart-series="series"
+                            chart-options="options"
+                            chart-dataset-override="datasetOverride">
+                    </canvas>
+                </div>
+            </div>
         </div>
         <div class="col-md-8">
             <div class="row">
@@ -105,7 +112,8 @@
                 <hr/>
                 <div ng-repeat="next in subway">
                     <i class="fa fa-train fa-fw" aria-hidden="true"></i>
-                    <span class="schedule-message">{{ next.message.substr(0, 20) }}<span ng-if="next.message.length > 20">...</span></span>
+                    <span class="schedule-message">{{ next.message.substr(0, 20) }}<span
+                            ng-if="next.message.length > 20">...</span></span>
                     <span class="pull-right">{{ next.destination }}</span>
                 </div>
                 <div ng-show="subway.length === 0">

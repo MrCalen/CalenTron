@@ -36,7 +36,7 @@ app.controller('HomeController', ['$scope', '$timeout', '$http', function ($scop
         $timeout(function () {
             ping();
             $scope.pingRec();
-        }, 20000);
+        }, 5000);
     };
 
     ping();
