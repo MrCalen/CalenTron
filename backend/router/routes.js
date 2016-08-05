@@ -165,10 +165,10 @@ exports.handleRouting = function (app) {
     app.get('/api/twitch', api, function (req, res) {
        twitchController
        .getTwichTop()
-       .then(function (result) {
+       .then(function (streams) {
           res.send({
               success: true,
-              result: result.streams.result
+              result: streams.streams
           });
        });
     });

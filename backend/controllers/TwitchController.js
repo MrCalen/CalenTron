@@ -3,7 +3,7 @@ exports.getTwichTop = function () {
         var https = require('https');
         https.get({
             host: 'api.twitch.tv',
-            path: '/kraken/streams?limit=5&game=League%20of%20Legends',
+            path: '/kraken/streams?limit=5&game=League%20of%20Legends'
         }, function (response) {
             var body = '';
             response.on('data', function (d) {
@@ -11,7 +11,6 @@ exports.getTwichTop = function () {
             });
             response.on('end', function () {
                 var parsed = JSON.parse(body);
-                console.log(parsed);
                 resolve(parsed);
             });
         });
