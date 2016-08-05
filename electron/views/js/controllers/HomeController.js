@@ -27,6 +27,10 @@ app.controller('HomeController', ['$scope', '$timeout', '$http', function ($scop
     var ping = function () {
         $http.get(window.url + "/api/ping?token=" + $scope.access_token)
         .success(function (data) {
+            if ($scope.labels.length > 20) {
+                $scope.labels.shift();
+                $scope.data[0].shift();
+            }
             $scope.labels.push("");
             $scope.data[0].push(data.ping);
         });
@@ -36,7 +40,7 @@ app.controller('HomeController', ['$scope', '$timeout', '$http', function ($scop
         $timeout(function () {
             ping();
             $scope.pingRec();
-        }, 30000);
+        }, 20000);
     };
 
     ping();
