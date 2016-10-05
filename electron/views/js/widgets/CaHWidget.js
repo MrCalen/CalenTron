@@ -8,7 +8,6 @@ app.directive('cahWidget', function () {
             $scope.fetch = function () {
                 $http.get(window.url + "/api/cah?token=" + access_token)
                 .success(function (data) {
-                    console.log(data);
                     $scope.img = data.result;
                 });
             };
