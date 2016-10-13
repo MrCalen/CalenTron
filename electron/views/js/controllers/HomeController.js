@@ -27,7 +27,7 @@ app.controller('HomeController', ['$scope', '$timeout', '$http', function ($scop
     var ping = function () {
         $http.get(window.url + "/api/ping?token=" + $scope.access_token)
         .success(function (data) {
-            if (data.ping >= 150) {
+            if (data.ping >= 50) {
                 new Notification("Ping too High", {
                     body: "Actual ping " + data.ping
                 });
