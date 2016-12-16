@@ -15,6 +15,7 @@ exports.loginRoute = function (req, res) {
 
     dbModule.fetchUsers()
     .then(function (users) {
+        console.log(users);
         users = users.filter(function (user) {
             return user.login === login
                 && bcrypt.compareSync(password, user.password);

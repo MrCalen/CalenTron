@@ -1,6 +1,6 @@
-app.controller('LoginController', ['$scope', '$http', function ($scope, $http) {
+app.controller('LoginController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
     if (localStorage.getItem('access_token') !== null) {
-        window.location = '/';
+        $location.path("/app");
         return;
     }
 
@@ -14,14 +14,18 @@ app.controller('LoginController', ['$scope', '$http', function ($scope, $http) {
             login: login,
             password: password
         })
-        .success(function (data) {
+        .then(function (data) {
+            data = data.data;
             if (!data.success) {
                 $scope.loginError = data.message;
                 return;
             }
 
             localStorage.setItem('access_token', data.message);
-            window.location = '/';
+            $location.path("/app");
+        })
+        .catch(function (err) {
+            console.log(err);
         });
     }
 }]);

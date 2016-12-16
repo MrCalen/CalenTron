@@ -1,11 +1,12 @@
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
-        templateUrl: 'partials/home.html',
-        controller: 'HomeController'
-    }).when('/login', {
         templateUrl: 'partials/login.html',
         controller: 'LoginController'
-    }).otherwise({
+    }).when('/app', {
+        templateUrl: 'partials/home.html',
+        controller: 'HomeController'
+    })
+    .otherwise({
         redirectTo: '/login'
     });
 }]);

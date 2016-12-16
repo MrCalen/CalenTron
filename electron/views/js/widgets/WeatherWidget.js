@@ -25,7 +25,8 @@ app.directive('weatherWidget', function () {
 
             $scope.fetchData = function () {
                 $http.get($scope.url + '/api/weather?token=' + $scope.token)
-                    .success(function (data) {
+                    .then(function (data) {
+                        data = data.data;
                         var last = data.list[0];
                         $scope.lastPrevision = {
                             time: last.dt_txt,

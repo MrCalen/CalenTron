@@ -1,7 +1,7 @@
-app.controller('HomeController', ['$scope', '$timeout', '$http', function ($scope, $timeout, $http) {
+app.controller('HomeController', ['$scope', '$timeout', '$http', '$location', function ($scope, $timeout, $http, $location) {
     var access_token;
     if (!(access_token = localStorage.getItem('access_token'))) {
-        window.location = '#login';
+        $location.path("/");
         return;
     }
 
@@ -26,7 +26,8 @@ app.controller('HomeController', ['$scope', '$timeout', '$http', function ($scop
 
     var ping = function () {
         $http.get(window.url + "/api/ping?token=" + $scope.access_token)
-        .success(function (data) {
+        .then(function (data) {
+            data = data.data;
             if (data.ping >= 50) {
                 new Notification("Ping too High", {
                     body: "Actual ping " + data.ping

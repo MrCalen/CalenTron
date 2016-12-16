@@ -6,8 +6,8 @@ app.directive('twitchWidget', function () {
             var access_token = localStorage.getItem('access_token');
             $scope.fetch = function () {
                 $http.get(window.url + "/api/twitch?token=" + access_token)
-                .success(function (data) {
-                    $scope.streams = data.result;
+                .then(function (data) {
+                    $scope.streams = data.data.result;
                 })
             };
 

@@ -11,18 +11,14 @@ exports.migrate = function () {
     connection.connect();
     connection.query("CREATE TABLE IF NOT EXISTS users(login VARCHAR(255) PRIMARY KEY, password VARCHAR(255))");
     connection.query("CREATE TABLE IF NOT EXISTS tasks(id INTEGER PRIMARY KEY AUTO_INCREMENT, name TEXT, solved INT)");
-
-    connection.query("INSERT INTO users SET ?", {
-        'login': config.user.login,
-        'password': config.user.password
-    });
-    connection.end();
+    // connection.end();
+    global.db = connection;
 };
 
 exports.fetchUsers = function () {
     return new Promise(function (resolve, error) {
         var db = global.db;
-        db.all("SELECT * FROM users", function(err, rows) {
+        db.query("SELECT * FROM users", function(err, rows) {
             resolve(rows);
         });
     });
@@ -31,7 +27,7 @@ exports.fetchUsers = function () {
 exports.fetchTasks = function () {
     return new Promise(function (resolve, error) {
         var db = global.db;
-        db.all('SELECT * FROM tasks', function (err, rows) {
+        db.query('SELECT * FROM tasks', function (err, rows) {
             resolve(rows);
         })
     });

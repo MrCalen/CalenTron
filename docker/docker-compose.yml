@@ -8,6 +8,6 @@ node:
   build: ./backend
   container_name: backend
   ports:
-    - "9292:3000"
+    - "3000:3000"
   links:
     - mysql

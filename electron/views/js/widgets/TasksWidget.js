@@ -30,7 +30,7 @@ app.directive('tasksWidget', function () {
                 $http.post(window.url + "/api/task/" + task.id
                     + "/" + (task.solved ? 'solve' : 'unsolve')
                     + '?token=' + $scope.access_token)
-                    .success(function (data) {
+                    .then(function (data) {
                         $scope.refresh();
                     });
             };
@@ -41,7 +41,7 @@ app.directive('tasksWidget', function () {
                         name: name
                     }
                 )
-                .success(function (data) {
+                .then(function (data) {
                     $scope.refresh();
                 })
             };
@@ -50,7 +50,7 @@ app.directive('tasksWidget', function () {
                 $http.post(window.url + "/api/task/" + task.id
                     + "/delete"
                     + '?token=' + $scope.access_token)
-                    .success(function (data) {
+                    .then(function (data) {
                         $scope.refresh();
                     });
             }

@@ -19,16 +19,16 @@ app.directive('tramWidget', function () {
             $scope.fetchTramway = function () {
                 $scope.loadingTramway = true;
                 $http.get($scope.url + "/api/tram?token=" + $scope.access_token)
-                .success(function (data) {
-                    $scope.tram = data;
+                .then(function (data) {
+                    $scope.tram = data.data;
                     $scope.loadingTramway = false;
                 });
             };
             $scope.fetchSubway = function () {
                 $scope.loadingSubway = true;
                 $http.get($scope.url + "/api/subway?token=" + $scope.access_token)
-                .success(function (data) {
-                    $scope.subway = data;
+                .then(function (data) {
+                    $scope.subway = data.data;
                     $scope.loadingSubway = false;
                 });
             };
