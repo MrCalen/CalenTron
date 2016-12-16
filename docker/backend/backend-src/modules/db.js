@@ -36,8 +36,11 @@ exports.fetchTasks = function () {
 exports.createTask = function (name) {
     return new Promise(function (resolve, error) {
         var db = global.db;
-        var stm = db.prepare('INSERT INTO tasks(name, solved) VALUES(?, ?)');
-        stm.run(name, 0);
+        var task = {
+            name: name,
+            solved: 0,
+        };
+        db.query('INSERT INTO tasks SET ?', task);
         resolve();
     });
 };
@@ -45,7 +48,7 @@ exports.createTask = function (name) {
 exports.solveTask = function (id, solve) {
     return new Promise(function (resolve, error) {
         var db = global.db;
-        db.run('UPDATE tasks SET solved = ? WHERE id = ?', solve ? 1 : 0, id);
+        db.query('UPDATE tasks SET solved = ? WHERE id = ?', [solve ? 1 : 0, id]);
         resolve();
     });
 };
@@ -53,7 +56,7 @@ exports.solveTask = function (id, solve) {
 exports.removeTask = function(id) {
     return new Promise(function (resolve, error) {
         var db = global.db;
-        db.run('DELETE FROM tasks WHERE id = ?', id);
+        db.query('DELETE FROM tasks WHERE id = ?', [id]);
         resolve();
     });
 };
