@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - "0.10"
+script:
+  - cd docker/backend/backend-src
+  - npm install
+  - npm test
