@@ -11,7 +11,6 @@ global.config = config;
 global.express = express;
 
 
-
 // Fetch database migrate
 // Put it in global scope too
 var file = global.config.server.database;
