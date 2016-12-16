@@ -11,7 +11,8 @@
     "jsdom": "^9.4.1",
     "jsonwebtoken": "^7.1.7",
     "sqlite3": "^3.1.4",
-    "tcp-ping": "^0.1.1"
+    "tcp-ping": "^0.1.1",
+    "mysql" : "2.12.0"
   },
   "devDependencies": {},
   "scripts": {

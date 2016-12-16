@@ -1,0 +1,13 @@
+mysql:
+  image: "mysql:5.6"
+  container_name: db
+  environment:
+     MYSQL_ROOT_PASSWORD: calentron
+     MYSQL_DATABASE: calentron
+node:
+  build: ./backend
+  container_name: backend
+  ports:
+    - "9292:3000"
+  links:
+    - mysql

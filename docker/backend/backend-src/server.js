@@ -10,19 +10,8 @@ var config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'));
 global.config = config;
 global.express = express;
 
-
-// Fetch database migrate
-// Put it in global scope too
-var file = global.config.server.database;
-var exists = fs.existsSync(file);
-if (!exists) {
-    console.error('SQL Database could not be found, please migrate first.');
-    process.exit(1);
-}
-
-var sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database(file);
-global.db = db;
+var db = require('./modules/db.js');
+db.migrate();
 
 router.handleRouting(app);
 
