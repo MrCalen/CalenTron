@@ -35,6 +35,7 @@ exports.handleRouting = function (app) {
                 success: false,
                 message: 'Please provide an access token'
             });
+            res.status(403);
             return;
         }
         var jwt = require('jsonwebtoken');
@@ -47,6 +48,7 @@ exports.handleRouting = function (app) {
                 success: false,
                 message: 'Invalid access token'
             });
+            res.status(403);
             return;
         }
         req.token = decoded;

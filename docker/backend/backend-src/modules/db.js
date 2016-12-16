@@ -11,7 +11,6 @@ exports.migrate = function () {
     connection.connect();
     connection.query("CREATE TABLE IF NOT EXISTS users(login VARCHAR(255) PRIMARY KEY, password VARCHAR(255))");
     connection.query("CREATE TABLE IF NOT EXISTS tasks(id INTEGER PRIMARY KEY AUTO_INCREMENT, name TEXT, solved INT)");
-    // connection.end();
     global.db = connection;
 };
 
@@ -38,7 +37,7 @@ exports.createTask = function (name) {
         var db = global.db;
         var task = {
             name: name,
-            solved: 0,
+            solved: 0
         };
         db.query('INSERT INTO tasks SET ?', task);
         resolve();
