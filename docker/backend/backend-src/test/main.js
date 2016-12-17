@@ -1,55 +1,61 @@
 var assert = require('assert');
 var should = require('should');
 var request = require('supertest');
+var fs = require('fs');
+var ini = require('ini');
 
-var url = "http://localhost:3000";
+describe('API', function () {
 
-describe('API - Security Token stuff', function () {
-
-    it('Bad request', function (done) {
-        request(url)
-            .get('/login')
-            .send()
-            .end(function (err, res) {
-                should(res).have.property('status', 404);
-                done();
-            })
+    before(function (done) {
+        global.config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'));
+        done();
     });
 
-    describe('No Token', function () {
-        it('No Token - Success', function (done) {
-            request(url)
-                .get('/api/tasks')
-                .send()
-                .end(function (err, res) {
-                    var body = res.body;
-                    should(body).have.property('success', false);
+    describe('Cah Module', function () {
+
+        var cahUrl = null;
+
+        before(function (done) {
+            this.timeout(5000);
+            var ctrl = require('../controllers/CaHController');
+            ctrl.getLastCAH()
+                .then(function (cah) {
+                    cahUrl = cah;
                     done();
-                })
+            });
         });
-        it('No Token - Message', function (done) {
-            request(url)
-                .get('/api/tasks')
-                .send()
-                .end(function (err, res) {
-                    var body = res.body;
-                    should(body).have.property('message', 'Please provide an access token');
-                    done();
-                })
+
+        it('Can ping', function () {
+            should(cahUrl).be.a.String();
+        });
+
+        it('Result Regex', function () {
+            should(cahUrl).match(/^https:\/\/.*$/);
         });
     });
 
-    it('Valid request', function (done) {
-        request(url)
-        .get('/')
-        .send()
-        .end(function (err, res) {
-            should(res).have.property('status', 202);
-            done();
+    describe('PingController', function () {
+
+        var result = null;
+
+        before(function (done) {
+            this.timeout(5000);
+            var ctrl = require('../controllers/PingController');
+            ctrl.getPing()
+                .then(function (res) {
+                    result = res;
+                    done();
+                });
+        });
+
+        it('Result Ok', function () {
+            should(result).be.an.Object();
+        });
+
+        it('Result - Attempts', function () {
+            assert(result.attempts, 10);
         })
+
     });
 
-});
-
-describe('API - Sql related stuff', function () {
 });

@@ -8,10 +8,13 @@ exports.migrate = function () {
         database: process.env.DB_ENV_MYSQL_DATABASE
     });
 
-    connection.connect();
-    connection.query("CREATE TABLE IF NOT EXISTS users(login VARCHAR(255) PRIMARY KEY, password VARCHAR(255))");
-    connection.query("CREATE TABLE IF NOT EXISTS tasks(id INTEGER PRIMARY KEY AUTO_INCREMENT, name TEXT, solved INT)");
-    global.db = connection;
+    connection.connect(function (err) {
+        if (!err) {
+            connection.query("CREATE TABLE IF NOT EXISTS users(login VARCHAR(255) PRIMARY KEY, password VARCHAR(255))");
+            connection.query("CREATE TABLE IF NOT EXISTS tasks(id INTEGER PRIMARY KEY AUTO_INCREMENT, name TEXT, solved INT)");
+            global.db = connection;
+        }
+    });
 };
 
 exports.fetchUsers = function () {
