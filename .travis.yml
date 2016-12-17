@@ -1,7 +1,16 @@
 language: node_js
+env:
+  - CXX=g++-4.8
 node_js:
-  - "0.10"
+  - "6.2.2"
 script:
   - cd docker/backend/backend-src
   - npm install
   - npm test
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-4.8
+    - g++-4.8
