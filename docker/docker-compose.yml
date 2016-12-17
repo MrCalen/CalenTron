@@ -5,7 +5,7 @@ mysql:
      MYSQL_ROOT_PASSWORD: calentron
      MYSQL_DATABASE: calentron
 node:
-  build: ./backend
+  build: .
   container_name: backend
   ports:
     - "3000:3000"
