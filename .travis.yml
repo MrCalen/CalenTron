@@ -1,12 +1,14 @@
 language: node_js
 env:
-  - CXX=g++-4.8
+- CXX=g++-4.8
 node_js:
-  - "6.2.2"
+- 6.2.2
 script:
-  - cd docker/backend/backend-src
-  - npm install
-  - npm test
+- cd docker/backend-src
+- npm install
+- npm test
+- cd -
+
 addons:
   apt:
     sources:
@@ -14,3 +16,17 @@ addons:
     packages:
     - gcc-4.8
     - g++-4.8
+
+before_install:
+- openssl aes-256-cbc -K $encrypted_f2265a680160_key -iv $encrypted_f2265a680160_iv
+  -in deploy_key.enc -out deploy_key -d
+- chmod 600 deploy_key
+- cp deploy_key ~/.ssh/id_rsa
+- eval "$(ssh-agent -s)"
+- ssh-add ~/.ssh/id_rsa
+
+after_success:
+- echo "Host mr-calen.eu" >> ~/.ssh/config
+- echo "    StrictHostKeyChecking no" >> ~/.ssh/config
+- rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/ ci@mr-calen.eu:/home/ci/calentron
+- sh launch-docker.sh

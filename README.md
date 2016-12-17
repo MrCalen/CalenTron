@@ -1,6 +1,8 @@
 CalenTron
 ====
 
+[![Build Status](https://travis-ci.org/MrCalen/CalenTron.svg?branch=master)](https://travis-ci.org/MrCalen/CalenTron)
+
 CalenTron is an Electron App used as a
 dashboard for my personal use.
 

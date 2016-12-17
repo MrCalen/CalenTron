@@ -4,6 +4,9 @@ mysql:
   environment:
      MYSQL_ROOT_PASSWORD: calentron
      MYSQL_DATABASE: calentron
+     PING_URL: HIDDEN_PING
+     CAH_URL: HIDDEN_CAH
+     WEATHER_KEY: HIDDEN_WEATHER
 node:
   build: .
   container_name: backend
