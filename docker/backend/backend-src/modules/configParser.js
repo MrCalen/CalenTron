@@ -10,11 +10,16 @@ exports.parse = function () {
     };
 
     var parseEnv = function () {
-        global.server = {};
-        global.weather = {};
-        global.server.ping_url = process.env.PING_URL;
-        global.server.cah_url = process.env.CAH_URL;
-        global.weather['key'] = process.env.WEATHER_KEY;
+        var server = {};
+        var weather = {};
+        server.ping_url = process.env.PING_URL;
+        server.cah_url = process.env.CAH_URL;
+        weather['key'] = process.env.WEATHER_KEY;
+
+        global.config = {
+            server: server,
+            weather: weather
+        };
     };
 
     if (fs.existsSync(file)) {

@@ -39,10 +39,10 @@ describe('API', function () {
             this.timeout(5000);
             var ctrl = require('../controllers/PingController');
             ctrl.getPing()
-                .then(function (res) {
-                    result = res;
-                    done();
-                });
+            .then(function (res) {
+                result = res;
+                done();
+            });
         });
 
         it('Result Ok', function () {
