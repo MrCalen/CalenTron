@@ -1,13 +1,11 @@
 var assert = require('assert');
 var should = require('should');
 var request = require('supertest');
-var fs = require('fs');
-var ini = require('ini');
 
 describe('API', function () {
 
     before(function (done) {
-        global.config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'));
+        require('../modules/configParser').parse();
         done();
     });
 
@@ -35,7 +33,6 @@ describe('API', function () {
     });
 
     describe('PingController', function () {
-
         var result = null;
 
         before(function (done) {
