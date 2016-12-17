@@ -89,7 +89,27 @@ describe('API', function () {
 
         it('Result - Typing', function () {
             should(result.list).be.an.Array();
-        })
-    })
+        });
+    });
 
+    describe('TramController', function () {
+        var result = null;
+
+        before(function (done) {
+            var ctrl = require('../controllers/TramController');
+            ctrl.getTram()
+            .then(function (res) {
+                result = res;
+               done();
+            });
+        });
+
+        it('Result - Ok', function () {
+            should(result).be.an.Object();
+        });
+
+        it('Result - Typing', function () {
+            should(result.response.schedules).be.an.Array();
+        });
+    });
 });
