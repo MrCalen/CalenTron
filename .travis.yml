@@ -17,13 +17,10 @@ addons:
     - gcc-4.8
     - g++-4.8
 before_install:
-
 - openssl aes-256-cbc -K $encrypted_f2265a680160_key -iv $encrypted_f2265a680160_iv
-  -in config.ini.enc -out config.ini -d
-
-- openssl aes-256-cbc -K $encrypted_f2265a680160_key -iv $encrypted_f2265a680160_iv
-  -in deploy_key.enc -out deploy_key -d
-
+  -in deploy-files.tar.bz2.enc -out deploy-files.tar.bz2 -d
+- tar xvf deploy-files.tar.bz2
+- mv deploy-files/* .
 - chmod 600 deploy_key
 - cp deploy_key ~/.ssh/id_rsa
 - eval "$(ssh-agent -s)"

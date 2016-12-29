@@ -4,3 +4,5 @@
 **.DS_Store
 
 config.ini
+deploy-files
+deploy-files.tar.bz2
