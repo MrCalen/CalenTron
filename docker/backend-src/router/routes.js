@@ -31,11 +31,11 @@ exports.handleRouting = function (app) {
     function api(req, res, next) {
         var access_token = req.query.token;
         if (!access_token) {
-            res.send({
+            res.status(403)
+            .send({
                 success: false,
                 message: 'Please provide an access token'
             });
-            res.status(403);
             return;
         }
         var jwt = require('jsonwebtoken');
@@ -44,11 +44,11 @@ exports.handleRouting = function (app) {
         try {
             decoded = jwt.verify(access_token, global.config.server.key);
         } catch (err) {
-            res.send({
+            res.status(403)
+            .send({
                 success: false,
                 message: 'Invalid access token'
             });
-            res.status(403);
             return;
         }
         req.token = decoded;
