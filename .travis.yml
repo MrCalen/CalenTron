@@ -31,3 +31,6 @@ after_success:
 - echo "    StrictHostKeyChecking no" >> ~/.ssh/config
 - rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/ ci@mr-calen.eu:/home/ci/calentron
 - sh launch-docker.sh
+notifications:
+  slack:
+    secure: i+X/NJ6/yVexTEWYukKlSlUiEfWrZPau/C7ODalAisPAqg4RUazkQ7oqx5sRt5cyEs6+QGfrVKukr6IbVeR5GtdyPE5js5R1Y3PNGhjjhu/Gw38T6U85UKf9p638C3puVblN9oggI/XL8edsSQptA17Glh8bzN49KxACZCZhUZ4BnhPlkDep0HBOz2DQAa97+wm4yeziHVvRmUxsbVH8F3SszAlllXcmLrs3QKaRY2JRPP1yoqtmyherYBlj0zX/iwHmzOcOleDl7qcLloFTROdI6tROAW/5vdRjs9L9VoNmMY8w9o1aEdiwwpz+UbQfdrBs4cuGb0mkhPwkQuThi+VbVAOvzR/RGOczmUyra9Qb5iBZEXM2ja465igbouPuWUfoX2KwXlLWeZW3mz8ZirLzQIpItsbbYKk4g8vZLfagPZGHen8i1Ib/nb2ZNvVtoJoyfQb7kcti4vDuJlRLwj/+CTQWkVmNGxZK50xQpnaikShOJjZVgb6OKHEZXnd/BVS6nMo3HctrFrAfc45WinGxXnY8rHDr3j5D4//sJksRxVJWNl+oLvd3LrusAe/OE9frubW4Qy3TGG6KN+7Uc1aY/w+TvqC7dulVq/1F0j4oEtoLT24CS24L4q4Mi630zk4tbE3FN3p/ddJCrhdQzxHf3Mp2VN8+Pjx194wyMPo=
