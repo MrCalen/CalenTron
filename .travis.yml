@@ -21,6 +21,7 @@ before_install:
   -in deploy-files.tar.bz2.enc -out deploy-files.tar.bz2 -d
 - tar xvf deploy-files.tar.bz2
 - mv deploy-files/* .
+- cp config.ini docker/backend-src
 - chmod 600 deploy_key
 - cp deploy_key ~/.ssh/id_rsa
 - eval "$(ssh-agent -s)"

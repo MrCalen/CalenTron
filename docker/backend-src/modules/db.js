@@ -12,11 +12,12 @@ exports.migrate = function () {
         if (!err) {
             connection.query("CREATE TABLE IF NOT EXISTS users(login VARCHAR(255) PRIMARY KEY, password VARCHAR(255))");
             connection.query("CREATE TABLE IF NOT EXISTS tasks(id INTEGER PRIMARY KEY AUTO_INCREMENT, name TEXT, solved INT)");
-
-            connection.query('INSERT INTO users SET ?', {
-                login: global.config.user.login,
-                password: global.config.user.password
-            }, function (_) {});
+            if (global.config.user) {
+                connection.query('INSERT INTO users SET ?', {
+                    login: global.config.user.login,
+                    password: global.config.user.password
+                }, function (_) {});
+            }
             global.db = connection;
         }
     });
