@@ -8,6 +8,8 @@ app.directive('twitchWidget', function () {
                 $http.get(window.url + "/api/twitch?token=" + access_token)
                 .then(function (data) {
                     $scope.streams = data.data.result;
+                }).catch(function (data) {
+                    //
                 })
             };
 

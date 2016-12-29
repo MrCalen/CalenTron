@@ -22,6 +22,9 @@ app.directive('tramWidget', function () {
                 .then(function (data) {
                     $scope.tram = data.data;
                     $scope.loadingTramway = false;
+                }).catch(function (err) {
+                    $scope.loadingTramway = false;
+
                 });
             };
             $scope.fetchSubway = function () {
@@ -29,6 +32,8 @@ app.directive('tramWidget', function () {
                 $http.get($scope.url + "/api/subway?token=" + $scope.access_token)
                 .then(function (data) {
                     $scope.subway = data.data;
+                    $scope.loadingSubway = false;
+                }).catch(function (err) {
                     $scope.loadingSubway = false;
                 });
             };

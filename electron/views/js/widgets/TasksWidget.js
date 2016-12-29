@@ -13,6 +13,9 @@ app.directive('tasksWidget', function () {
                 .then(function (response) {
                     $scope.tasks = response.data;
                     $scope.loading = false;
+                })
+                .catch(function (err) {
+                    $scope.loading = false;
                 });
             };
 
@@ -32,6 +35,9 @@ app.directive('tasksWidget', function () {
                     + '?token=' + $scope.access_token)
                     .then(function (data) {
                         $scope.refresh();
+                    })
+                    .catch(function (err) {
+                        $scope.refresh();
                     });
             };
 
@@ -44,6 +50,9 @@ app.directive('tasksWidget', function () {
                 .then(function (data) {
                     $scope.refresh();
                 })
+                .catch(function (err) {
+                    $scope.refresh();
+                })
             };
 
             $scope.removeTask = function (task) {
@@ -52,7 +61,9 @@ app.directive('tasksWidget', function () {
                     + '?token=' + $scope.access_token)
                     .then(function (data) {
                         $scope.refresh();
-                    });
+                    }).catch(function (err) {
+                        $scope.refresh();
+                    });;
             }
         }
     };
