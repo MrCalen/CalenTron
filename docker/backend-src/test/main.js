@@ -20,7 +20,10 @@ describe('API', function () {
                 .then(function (cah) {
                     cahUrl = cah;
                     done();
-            });
+                })
+                .catch(function (err) {
+                    cahUrl = err;
+                });
         });
 
         it('Can ping', function () {
